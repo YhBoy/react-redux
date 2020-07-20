@@ -10,7 +10,7 @@ class detail extends Component{
                     {
                         this.props.list.map((item,index)=>{
                                return (
-                                    <li key = { index }>
+                                    <li onClick = { ()=>{ this.props.deleteCurrent(index) } } key = { index }>
                                             {
                                                 item
                                             }
@@ -26,9 +26,21 @@ class detail extends Component{
 
 }
 const mapStateToProps = (state)=>{
-    console.log(state.list)
     return {
         list:state.list
     }
 }
-export default connect(mapStateToProps,null)(detail)
+
+const mapDispatchToProps = ( dispatch )=>{
+    return {
+        deleteCurrent(index){
+            const action = {
+                type:'delete_current',
+                value:index
+            }
+            dispatch(action)
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(detail)
