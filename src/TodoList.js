@@ -1,5 +1,6 @@
 import React , { Component } from 'react'
 import {connect} from 'react-redux'
+import { DELETE_CURRENT,DELETE_ITEM,ADD_ITEM,CHANGE_INPUT_VALUE  } from './store/actions'
 
 class TodoList extends Component{
     render(){
@@ -37,20 +38,20 @@ const mapDispatchToProps = (dispatch)=>{
     return {
         handleInputChange(e){
             const action = {
-                type: 'change_input_value',
+                type: CHANGE_INPUT_VALUE,
                 value:e.target.value
             }    
             dispatch(action)
         },
         handleClick(){
             const action = {
-                type: 'add_item',
+                type: ADD_ITEM,
             }    
             dispatch(action)
         },
         deleteItem(index){
             const action = {
-                type: 'delete_item',
+                type: DELETE_ITEM,
                 value: index
             } 
             dispatch(action)
